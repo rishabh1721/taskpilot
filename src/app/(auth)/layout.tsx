@@ -8,17 +8,29 @@ import { Button } from "@/components/ui/button";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
-};
+}
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   const pathname = usePathname();
   const isSignIn = pathname === "/sign-in";
 
-  return ( 
+  return (
     <main className="bg-neutral-100 min-h-screen">
       <div className="mx-auto max-w-screen-2xl p-4">
         <nav className="flex justify-between items-center">
-          <Image src="/logo.svg" alt="logo" width={152} height={56} />
+          <Link
+            href="/"
+            className="flex items-center pt-2 pb-1 transition-opacity hover:opacity-80"
+          >
+            <Image
+              src="/logo.png"
+              alt="TaskPilot Logo"
+              width={152}
+              height={56}
+              priority
+              className="w-auto object-contain"
+            />
+          </Link>
           <Button asChild variant="secondary">
             <Link href={isSignIn ? "/sign-up" : "/sign-in"}>
               {isSignIn ? "Sign Up" : "Login"}
@@ -30,7 +42,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
         </div>
       </div>
     </main>
-   );
-}
- 
+  );
+};
+
 export default AuthLayout;

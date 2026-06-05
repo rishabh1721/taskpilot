@@ -8,16 +8,29 @@ import { WorkspaceSwitcher } from "./workspace-switcher";
 
 export const Sidebar = () => {
   return (
-    <aside className="h-full bg-neutral-100 p-4 w-full">
-      <Link href="/">
-        <Image src="/logo.svg" alt="logo" width={164} height={48} />
+    <aside className="flex h-full w-full flex-col overflow-y-auto border-r border-border bg-muted/20 p-4 hide-scrollbar">
+      <Link
+        href="/"
+        className="flex items-center pt-2 pb-1 transition-opacity hover:opacity-80"
+      >
+        <Image
+          src="/logo.png"
+          alt="TaskPilot Logo"
+          width={220}
+          height={64}
+          priority
+          // Removed "h-8" so it uses your exact 164x48 dimensions
+          className="w-auto object-contain"
+        />
       </Link>
+
       <DottedSeparator className="my-4" />
-      <WorkspaceSwitcher />
-      <DottedSeparator className="my-4" />
-      <Navigation />
-      <DottedSeparator className="my-4" />
-      <Projects />
+
+      <div className="flex flex-1 flex-col gap-y-4">
+        <WorkspaceSwitcher />
+        <Navigation />
+        <Projects />
+      </div>
     </aside>
   );
 };
